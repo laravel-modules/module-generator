@@ -11,7 +11,7 @@ composer require b5digital/module-generator
 ### Usage
 
 ```php
-$generator = new \B5digital\ModuleGenerator\Generator;
+$generator = new \B5Digital\ModuleGenerator\Generator;
 
 $generator->publish(__DIR__.'/../stubs');
 ```
