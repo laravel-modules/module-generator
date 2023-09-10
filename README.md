@@ -88,3 +88,13 @@ $generator->composer()
     ->withBackup()
     ->publish();
 ```
+
+> If you want to add a hel file to autoload, You can use ``mergeAutoloadFiles`` method:
+
+```php
+$generator->composer()
+    ->mergeAutoloadFiles([
+        'app/Support/helpers.php',
+    ])
+    ->publish();
+``

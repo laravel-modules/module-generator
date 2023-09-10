@@ -83,6 +83,18 @@ class Composer
     }
 
     /**
+     * Merge the given files to composer autoload.
+     */
+    public function mergeAutoloadFiles(array $files): self
+    {
+        $autoloadFiles = $this->composer['autoload']['files'] ?? [];
+
+        $this->composer['autoload']['files'] = array_merge($autoloadFiles, $files);
+
+        return $this;
+    }
+
+    /**
      * Merge the given scripts to composer scripts.
      */
     public function mergeScripts(array $scripts): self
