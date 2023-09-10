@@ -2,8 +2,6 @@
 
 namespace B5Digital\ModuleGenerator;
 
-use Illuminate\Support\Facades\App;
-
 class Generator
 {
     /**
@@ -65,7 +63,7 @@ class Generator
      */
     public function composer(): Composer
     {
-        $composer = App::make(Composer::class);
+        $composer = new Composer;
 
         return $composer->setPath($this->getBasePath().'/composer.json');
     }

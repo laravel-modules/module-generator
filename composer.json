@@ -12,13 +12,6 @@
         "psr-4": {
             "B5digital\\ModuleGenerator\\": "src/"
         }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "B5Digital\\ModuleGenerator\\ModuleGeneratorServiceProvider"
-            ]
-        }
     }
 }
 
