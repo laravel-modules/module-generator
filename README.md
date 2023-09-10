@@ -5,7 +5,7 @@ Simple and beautiful tool helps to generate modules to use in your project
 ### Installation
 
 ```shell
-composer require b5digital/module-generator
+composer require b5-digital/module-generator
 ```
 
 ### Usage
