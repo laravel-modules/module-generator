@@ -5,11 +5,6 @@ namespace B5Digital\ModuleGenerator;
 class Generator
 {
     /**
-     * The path of stubs directory.
-     */
-    protected string $stubsPath = __DIR__.'/../stubs';
-
-    /**
      * Get the project's base path.
      */
     protected function getBasePath(): string
