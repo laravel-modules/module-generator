@@ -1,0 +1,24 @@
+{
+    "name": "b5digital/module-generator",
+    "description": "Simple and beautiful tool helps to generate modules to use in your project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmed Fathy",
+            "email": "ahmed.fathy@b5digital.dk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "B5digital\\ModuleGenerator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "B5Digital\\ModuleGenerator\\ModuleGeneratorServiceProvider"
+            ]
+        }
+    }
+}
+
