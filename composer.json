@@ -4,8 +4,9 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Ahmed Fathy",
-            "email": "ahmed.fathy@b5digital.dk"
+            "name": "Alex Mansour",
+            "email": "alex@b5digital.dk",
+            "homepage": "https://www.b5digital.dk"
         }
     ],
     "autoload": {
