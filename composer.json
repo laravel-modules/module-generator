@@ -9,6 +9,9 @@
             "homepage": "https://www.b5digital.dk"
         }
     ],
+    "require": {
+        "php": "^7.4|^8.0"
+    },
     "autoload": {
         "psr-4": {
             "B5Digital\\ModuleGenerator\\": "src/"
