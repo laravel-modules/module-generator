@@ -2,6 +2,8 @@
 
 namespace B5Digital\ModuleGenerator;
 
+use Illuminate\Support\Str;
+
 class Generator
 {
     /**
@@ -61,5 +63,31 @@ class Generator
         $composer = new Composer;
 
         return $composer->setPath($this->getBasePath().'/composer.json');
+    }
+
+    /**
+     * Register laravel service provider in config file.
+     *
+     * This method only works in laravel projects
+     */
+    public function registerServiceProvider(string $provider): self
+    {
+        $namespace = Str::replaceLast('\\', '', app()->getNamespace());
+
+        $appConfig = file_get_contents(config_path('app.php'));
+
+        $provider = Str::replaceLast('::class', '', trim($provider, '\\'));
+
+        if (Str::contains($appConfig, $provider)) {
+            return $this;
+        }
+
+        file_put_contents(config_path('app.php'), str_replace(
+            "{$namespace}\\Providers\EventServiceProvider::class,".PHP_EOL,
+            "{$namespace}\\Providers\EventServiceProvider::class,".PHP_EOL."        $provider::class,".PHP_EOL,
+            $appConfig
+        ));
+
+        return $this;
     }
 }

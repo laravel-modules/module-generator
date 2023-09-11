@@ -46,6 +46,8 @@ This example of users module:
             - Resources
                 - Users
                     - UserResource.php
+        - Providers
+            - UsersServiceProvider.php
     - routes
         - api
             users.php
@@ -55,6 +57,14 @@ You can specify publish path directory:
 
 ```php
 $generator->publish(__DIR__.'/../stubs', '/path/to/publish');
+```
+
+#### Register Service Provider
+You can register the service provider in `config/app.php` file automatically by calling the `registerServiceProvider()` method:
+
+```php
+$generator->registerServiceProvider('App\Providers\UsersServiceProvider')
+
 ```
 
 #### Working with composer file
