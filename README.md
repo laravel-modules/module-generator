@@ -110,7 +110,7 @@ $generator->composer()
     ->publish();
 ```
 
-> If you want to add a hel file to autoload, You can use ``mergeAutoloadFiles`` method:
+> If you want to add a helper file to autoload, You can use `mergeAutoloadFiles` method:
 
 ```php
 $generator->composer()
