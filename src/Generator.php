@@ -66,6 +66,16 @@ class Generator
     }
 
     /**
+     * @throws \Exception
+     */
+    public function environment(string $envFile = '.env.example'): Environment
+    {
+        $env = new Environment();
+
+        return $env->setPath($this->getBasePath().'/'.$envFile);
+    }
+
+    /**
      * Register laravel service provider in config file.
      *
      * This method only works in laravel projects

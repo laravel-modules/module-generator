@@ -118,4 +118,15 @@ $generator->composer()
         'app/Support/helpers.php',
     ])
     ->publish();
-``
+```
+
+#### Working with .env.example file
+
+```php
+$generator->environment()
+    ->set('APP_NAME', 'Starter Kit')
+    ->set('ROLLBAR_TOKEN', "123")
+    ->appendAfter('APP_URL=', "APP_FRONTEND_URL=https://example.com")
+    ->append("\nFOO=bar")
+    ->publish();
+```
