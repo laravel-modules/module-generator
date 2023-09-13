@@ -120,6 +120,16 @@ $generator->composer()
     ->publish();
 ```
 
+> You can add some packages to `dont-discover` by calling `dontDiscover()` method:
+
+```php
+$generator->composer()
+    ->dontDiscover([
+        'rollbar/rollbar-laravel',
+    ])
+    ->publish();
+```
+
 #### Working with .env.example file
 
 ```php
