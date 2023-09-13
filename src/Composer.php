@@ -39,6 +39,20 @@ class Composer
     }
 
     /**
+     * Add the given packages to laravel dont-discover section.
+     */
+    public function dontDiscover(array $packages): self
+    {
+        $dontDiscover = $this->composer['extra']['laravel']['dont-discover'] ?? [];
+
+        $dontDiscover = array_unique(array_merge($dontDiscover, $packages));
+
+        $this->composer['extra']['laravel']['dont-discover'] = $dontDiscover;
+
+        return $this;
+    }
+
+    /**
      * Merge the given packages to composer require packages.
      */
     public function mergeRequire(array $packages): self
