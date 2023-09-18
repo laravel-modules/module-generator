@@ -103,7 +103,9 @@ class Composer
     {
         $autoloadFiles = $this->composer['autoload']['files'] ?? [];
 
-        $this->composer['autoload']['files'] = array_merge($autoloadFiles, $files);
+        $files = array_unique(array_merge($autoloadFiles, $files));
+
+        $this->composer['autoload']['files'] = $files;
 
         return $this;
     }
