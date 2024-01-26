@@ -1,6 +1,6 @@
 <?php
 
-namespace B5Digital\ModuleGenerator;
+namespace Eventat\ModuleGenerator;
 
 class Composer
 {

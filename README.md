@@ -10,19 +10,19 @@ First add the repository to your application's composer.json file:
 "repositories": [
     {
         "type": "composer",
-        "url": "https://packages.b5digital.dk"
+        "url": "https://satis.eventat.com.sa"
     }
 ],
 ```
 
 ```shell
-composer require b5-digital/module-generator
+composer require eventat/module-generator
 ```
 
 ### Usage
 
 ```php
-$generator = new \B5Digital\ModuleGenerator\Generator;
+$generator = new \Eventat\ModuleGenerator\Generator;
 
 $generator->publish(__DIR__.'/../stubs');
 ```

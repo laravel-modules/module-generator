@@ -1,12 +1,12 @@
 {
-    "name": "b5-digital/module-generator",
+    "name": "eventat/module-generator",
     "description": "Simple and beautiful tool helps to generate modules to use in your project",
     "license": "MIT",
     "authors": [
         {
-            "name": "Alex Mansour",
-            "email": "alex@b5digital.dk",
-            "homepage": "https://www.b5digital.dk"
+            "name": "Ahmed Fathy",
+            "email": "fathy.dev@gmail.com",
+            "homepage": "https://eventat.sa"
         }
     ],
     "require": {
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "B5Digital\\ModuleGenerator\\": "src/"
+            "Eventat\\ModuleGenerator\\": "src/"
         }
     }
 }
