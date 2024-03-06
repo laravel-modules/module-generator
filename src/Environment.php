@@ -1,6 +1,6 @@
 <?php
 
-namespace Eventat\ModuleGenerator;
+namespace LaravelModules\ModuleGenerator;
 
 class Environment
 {

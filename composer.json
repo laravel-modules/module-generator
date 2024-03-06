@@ -1,12 +1,12 @@
 {
-    "name": "eventat/module-generator",
+    "name": "laravel-modules/module-generator",
     "description": "Simple and beautiful tool helps to generate modules to use in your project",
     "license": "MIT",
     "authors": [
         {
             "name": "Ahmed Fathy",
             "email": "fathy.dev@gmail.com",
-            "homepage": "https://eventat.sa"
+            "homepage": "https://laraeast.com"
         }
     ],
     "require": {
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Eventat\\ModuleGenerator\\": "src/"
+            "LaravelModules\\ModuleGenerator\\": "src/"
         }
     }
 }

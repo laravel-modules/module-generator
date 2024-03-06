@@ -10,19 +10,19 @@ First add the repository to your application's composer.json file:
 "repositories": [
     {
         "type": "composer",
-        "url": "https://satis.eventat.com.sa"
+        "url": "https://satis.laraeast.com"
     }
 ],
 ```
 
 ```shell
-composer require eventat/module-generator
+composer require laravel-modules/module-generator
 ```
 
 ### Usage
 
 ```php
-$generator = new \Eventat\ModuleGenerator\Generator;
+$generator = new \LaravelModules\ModuleGenerator\Generator;
 
 $generator->publish(__DIR__.'/../stubs');
 ```
