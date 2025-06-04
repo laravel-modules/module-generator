@@ -67,6 +67,41 @@ $generator->registerServiceProvider('App\Providers\UsersServiceProvider')
 
 ```
 
+#### Modify files
+You can modify any file by calling the `replaceInFile(string $filePath, array $search, array $replace)` method:
+
+Example file:
+```php
+<?php
+// database/seeders/SettingsSeeder.php
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Laraeast\LaravelSettings\Facades\Settings;
+
+class SettingsSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        Settings::set('name:en', '{{APP_NAME_EN}}');
+        Settings::set('name:ar', '{{APP_NAME_AR}}');
+    }
+}
+
+```
+
+```php
+$generator->replaceInFile(
+    filePath: base_path('database/seeders/SettingsSeeder.php'),
+    search: ['{{APP_NAME_EN}}', '{{APP_NAME_AR}}'],
+    replace: [$nameEn, $nameAr],
+)
+
+```
+
 #### Working with composer file
 
 ```php

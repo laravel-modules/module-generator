@@ -76,6 +76,17 @@ class Generator
         return $env->setPath($this->getBasePath().'/'.$envFile);
     }
 
+    public function replaceInFile(string $filePath, array $search = [], array $replace = []): self
+    {
+        $content = file_get_contents($filePath);
+
+        $content = str_replace($search, $replace, $content);
+
+        file_put_contents($filePath, $content);
+
+        return $this;
+    }
+
     /**
      * Register laravel service provider in config file.
      *
