@@ -32,25 +32,25 @@ $generator->publish(__DIR__.'/../stubs');
 This example of users module:
 
 ```
-- stubs
-    - app
-        - Http
-            - Controllers
-                - Api
-                    - Users
-                        - ProfileController.php
-                        - UserController.php
-            - Requests
-                - Users
-                    - UserRequest.php
-            - Resources
-                - Users
-                    - UserResource.php
-        - Providers
-            - UsersServiceProvider.php
-    - routes
-        - api
-            users.php
+stubs/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   └── Api/
+│   │   │       └── Users/
+│   │   │           ├── ProfileController.php
+│   │   │           └── UserController.php
+│   │   ├── Requests/
+│   │   │   └── Users/
+│   │   │       └── UserRequest.php
+│   │   └── Resources/
+│   │       └── Users/
+│   │           └── UserResource.php
+│   └── Providers/
+│       └── UsersServiceProvider.php
+└── routes/
+    └── api/
+        └── users.php
 ```
 
 You can specify publish path directory:
