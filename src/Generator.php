@@ -66,9 +66,6 @@ class Generator
         return $composer->setPath($this->getBasePath().'/composer.json');
     }
 
-    /**
-     * @throws \Exception
-     */
     public function environment(string $envFile = '.env.example'): Environment
     {
         $env = new Environment();
@@ -76,9 +73,6 @@ class Generator
         return $env->setPath($this->getBasePath().'/'.$envFile);
     }
 
-    /**
-     * @throws \Exception
-     */
     public function file(string $path): File
     {
         $file = new File();
