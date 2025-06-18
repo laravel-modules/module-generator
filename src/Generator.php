@@ -76,6 +76,16 @@ class Generator
         return $env->setPath($this->getBasePath().'/'.$envFile);
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function file(string $path): File
+    {
+        $file = new File();
+
+        return $file->setPath($path);
+    }
+
     public function replaceInFile(string $filePath, array $search = [], array $replace = []): self
     {
         $content = file_get_contents($filePath);

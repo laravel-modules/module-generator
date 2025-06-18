@@ -171,7 +171,30 @@ $generator->composer()
 $generator->environment()
     ->set('APP_NAME', 'Starter Kit')
     ->set('ROLLBAR_TOKEN', "123")
+    ->append("FOO=bar")
+    ->prepend("FIRST_KEY=first")
     ->appendAfter('APP_URL=', "APP_FRONTEND_URL=https://example.com")
-    ->append("\nFOO=bar")
+    ->prepend("FIRST_KEY=first")
+    ->prependBefore('APP_NAME=', "SECOND_KEY=second")
     ->publish();
 ```
+
+#### Working with files
+
+```php
+$generator->file()
+    ->file(path: resource_path('views/dashboard/sidebar.blade.php'))
+    ->append("@include('dashboard.blogs.partials.sidebar')")
+    ->prepend("@include('dashboard.users.partials.sidebar')")
+    ->append("@include('dashboard.settings.partials.sidebar')")
+    ->appendAfter(
+        search: "@include('dashboard.blogs.partials.sidebar')",
+        content: "@include('dashboard.articles.partials.sidebar')"
+    )
+    ->prependBefore(
+        search: "@include('dashboard.settings.partials.sidebar')",
+        content: "@include('dashboard.posts.partials.sidebar')"
+    )
+    ->publish()
+```
+> If the file doesn't exist, It will create a new one with the added content.
