@@ -134,17 +134,6 @@ $generator->composer()
     ->publish();
 ```
 
-> Also, you can save a backup copy of your composer before modify named "composer-backup.json"
-
-```php
-$generator->composer()
-    ->mergeRequire([
-        'laravel/socialite' => '^5.6',
-    ])
-    ->withBackup()
-    ->publish();
-```
-
 > If you want to add a helper file to autoload, You can use `mergeAutoloadFiles` method:
 
 ```php

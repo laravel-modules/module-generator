@@ -14,21 +14,6 @@ class Composer
      */
     protected array $composer = [];
 
-    /**
-     * The composer file original content.
-     */
-    protected array $originalComposer = [];
-
-    /**
-     * Write backup composer when override content.
-     */
-    protected bool $allowBackup = false;
-
-    /**
-     * Set the path of the composer file.
-     *
-     * @throws \Exception
-     */
     public function setPath(string $path): self
     {
         $this->path = $path;
@@ -169,40 +154,10 @@ class Composer
     }
 
     /**
-     * Save original composer as a backup.
-     */
-    public function withBackup(): self
-    {
-        $this->allowBackup = true;
-
-        return $this;
-    }
-
-    /**
-     * Disable saving original composer as a backup.
-     */
-    public function withoutBackup(): self
-    {
-        $this->allowBackup = false;
-
-        return $this;
-    }
-
-    /**
      * Override the composer file of the application.
      */
     public function publish(): void
     {
-        // Save backup copy if the "allowBackup" flag equals "true"
-        if ($this->allowBackup) {
-
-            $original = json_encode($this->originalComposer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
-
-            $backupPath = sprintf('%s/composer-backup.json', dirname($this->path));
-
-            file_put_contents($backupPath, $original);
-        }
-
         // Convert the composer array to pretty json.
         $json = json_encode($this->composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
 
