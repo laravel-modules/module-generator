@@ -89,6 +89,13 @@ class File
         return $this;
     }
 
+    public function replace(string $search, string $replace): self
+    {
+        $this->content = str_replace($search, $replace, $this->content);
+
+        return $this;
+    }
+
     protected function setContent(): void
     {
         // Create parent directories if they don't exist
