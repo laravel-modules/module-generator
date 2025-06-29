@@ -56,7 +56,7 @@ stubs/
 You can specify publish path directory:
 
 ```php
-$generator->publish(__DIR__.'/../stubs', '/path/to/publish');
+$generator->publish(__DIR__.'/../stubs', base_path('app'));
 ```
 
 #### Register Service Provider
