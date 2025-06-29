@@ -128,7 +128,6 @@ $generator->environment()
     ->append("FOO=bar")
     ->prepend("FIRST_KEY=first")
     ->appendAfter('APP_URL=', "APP_FRONTEND_URL=https://example.com")
-    ->prepend("FIRST_KEY=first")
     ->prependBefore('APP_NAME=', "SECOND_KEY=second")
     ->publish();
 ```
