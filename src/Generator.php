@@ -22,7 +22,7 @@ class Generator
     /**
      * Publish all files from the given stubs to the given directory
      */
-    public function publish(string $from, ?string $to = null, array $fileNameReplacement = []): self
+    public function publish(string $from, ?string $to = null, array $filesNameReplacement = [], array $filesContentReplacement = []): self
     {
         $to = $to ?: $this->getBasePath();
 
@@ -42,17 +42,26 @@ class Generator
             if ($file != '.' && $file != '..') {
                 $sourceFile = $from . '/' . $file;
 
-                $fileNameSearch = array_keys($fileNameReplacement);
-                $fileNameReplace = array_values($fileNameReplacement);
+                $filesNameSearch = array_keys($filesNameReplacement);
+                $filesNameReplace = array_values($filesNameReplacement);
 
-                $destinationFile = str_replace($fileNameSearch, $fileNameReplace, $to . '/' . $file);
+                $filesContentSearch = array_keys($filesContentReplacement);
+                $filesContentReplace = array_values($filesContentReplacement);
+
+                $destinationFile = str_replace($filesNameSearch, $filesNameReplace, $to . '/' . $file);
 
                 // Recursively copy subdirectories
                 if (is_dir($sourceFile)) {
-                    $this->publish($sourceFile, $destinationFile, $fileNameReplacement);
+                    $this->publish($sourceFile, $destinationFile, $filesNameReplacement, $filesContentReplacement);
                 } else {
                     // Copy the file
                     copy($sourceFile, $destinationFile);
+
+                    if (! empty($filesContentReplacement)) {
+                        $fileContent = file_get_contents($destinationFile);
+                        $fileContent = str_replace($filesContentSearch, $filesContentReplace, $fileContent);
+                        file_put_contents($destinationFile, $fileContent);
+                    }
                 }
             }
         }

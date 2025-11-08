@@ -58,7 +58,7 @@ You can specify publish path directory:
 ```php
 $generator->publish(__DIR__.'/../stubs', base_path('app'));
 ```
-You can also replace published file names using the third and forth arguments `$fileNameReplacement` and `$fileContentReplacement` by adding array of [search => replacement]
+You can also replace published file names using the third and forth arguments `$filesNameReplacement` and `$filesContentReplacement` by adding array of [search => replacement]
 
 Example of crud module generator:
 
@@ -94,8 +94,8 @@ $crudReplacement = [
 $generator->publish(
     from: __DIR__.'/../stubs',
     to: base_path('app'),
-    fileNameReplacement: $crudReplacement,
-    fileContentReplacement: $crudReplacement,
+    filesNameReplacement: $crudReplacement,
+    filesContentReplacement: $crudReplacement,
 );
 ```
 
