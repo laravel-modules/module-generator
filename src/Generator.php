@@ -22,7 +22,7 @@ class Generator
     /**
      * Publish all files from the given stubs to the given directory
      */
-    public function publish(string $from, ?string $to = null): self
+    public function publish(string $from, ?string $to = null, array $fileNameReplacement = []): self
     {
         $to = $to ?: $this->getBasePath();
 
@@ -41,11 +41,15 @@ class Generator
         foreach ($files as $file) {
             if ($file != '.' && $file != '..') {
                 $sourceFile = $from . '/' . $file;
-                $destinationFile = $to . '/' . $file;
+
+                $fileNameSearch = array_keys($fileNameReplacement);
+                $fileNameReplace = array_values($fileNameReplacement);
+
+                $destinationFile = str_replace($fileNameSearch, $fileNameReplace, $to . '/' . $file);
 
                 // Recursively copy subdirectories
                 if (is_dir($sourceFile)) {
-                    $this->publish($sourceFile, $destinationFile);
+                    $this->publish($sourceFile, $destinationFile, $fileNameReplacement);
                 } else {
                     // Copy the file
                     copy($sourceFile, $destinationFile);

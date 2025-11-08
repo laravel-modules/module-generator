@@ -58,6 +58,43 @@ You can specify publish path directory:
 ```php
 $generator->publish(__DIR__.'/../stubs', base_path('app'));
 ```
+You can also replace published file names using the third argument `$fileNameReplacement` by adding array of [search => replacement]
+
+Example of crud module generator:
+
+```
+stubs/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   └── Api/
+│   │   │       └── Crud/
+│   │   │           └── CrudController.php
+│   │   ├── Requests/
+│   │   │   └── Cruds/
+│   │   │       └── CrudRequest.php
+│   │   └── Resources/
+│   │       └── Cruds/
+│   │           └── CrudResource.php
+│   └── Providers/
+│       └── CrudsServiceProvider.php
+└── routes/
+    └── api/
+        └── cruds.php
+```
+
+```php
+$generator->publish(
+    from: __DIR__.'/../stubs',
+    to: base_path('app'),
+    fileNameReplacement: [
+        'Cruds' => 'Categories',
+        'cruds' => 'categories',
+        'Crud' => 'Category',
+        'crud' => 'category',
+    ]
+);
+```
 
 #### Register Service Provider
 You can register the service provider in `config/app.php` file automatically by calling the `registerServiceProvider()` method:
