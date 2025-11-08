@@ -96,6 +96,28 @@ $generator->publish(
 );
 ```
 
+Result:
+```
+stubs/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   └── Api/
+│   │   │       └── Category/
+│   │   │           └── CategoryController.php
+│   │   ├── Requests/
+│   │   │   └── Categories/
+│   │   │       └── CategoryRequest.php
+│   │   └── Resources/
+│   │       └── Categorys/
+│   │           └── CategoryResource.php
+│   └── Providers/
+│       └── CategoriesServiceProvider.php
+└── routes/
+    └── api/
+        └── categories.php
+```
+
 #### Register Service Provider
 You can register the service provider in `config/app.php` file automatically by calling the `registerServiceProvider()` method:
 
