@@ -197,7 +197,7 @@ $generator->environment()
 #### Working with files
 
 ```php
-$generator->file()
+$generator
     ->file(path: resource_path('views/dashboard/sidebar.blade.php'))
     ->append("@include('dashboard.blogs.partials.sidebar')")
     ->prepend("@include('dashboard.users.partials.sidebar')")
