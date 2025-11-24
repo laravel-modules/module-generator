@@ -56,7 +56,10 @@ stubs/
 You can specify publish path directory:
 
 ```php
-$generator->publish(__DIR__.'/../stubs', base_path('app'));
+$generator->publish(
+    from: __DIR__.'/../stubs',
+    to: base_path('app')
+);
 ```
 You can also replace published file names using the third and forth arguments `$filesNameReplacement` and `$filesContentReplacement` by adding array of [search => replacement]
 
@@ -106,14 +109,11 @@ stubs/
 │   ├── Http/
 │   │   ├── Controllers/
 │   │   │   └── Api/
-│   │   │       └── Category/
-│   │   │           └── CategoryController.php
+│   │   │       └── CategoryController.php
 │   │   ├── Requests/
-│   │   │   └── Categories/
-│   │   │       └── CategoryRequest.php
+│   │   │   └── CategoryRequest.php
 │   │   └── Resources/
-│   │       └── Categorys/
-│   │           └── CategoryResource.php
+│   │       └── CategoryResource.php
 │   └── Providers/
 │       └── CategoriesServiceProvider.php
 └── routes/
@@ -242,4 +242,118 @@ $generator->file(base_path('database/seeders/SettingsSeeder.php'))
     ->replace(search: '{{APP_NAME_EN}}', replace: $nameEn)
     ->replace(search: '{{APP_NAME_AR}}', replace: $nameAr)
     ->publish()
+```
+#### Working with CRUDs
+> This package allows you to generate full CRUD files, You can generate it by using the `crud()` method:
+> 
+> Here is an example of how to generate a `user_categories` CRUD:
+##### Replacements of the CRUD words & file names:
+| Key                    | Example              |
+|------------------------|----------------------|
+| `__CRUD_STUDLY_SINGULAR__` | UserCategory         |
+| `__CRUD_CAMEL_SINGULAR__` | userCategory         |
+| `__CRUD_TITLE_SINGULAR__` | User Category        |
+| `__CRUD_UCFIRST_SINGULAR__` | User category        |
+| `__CRUD_LOWER_SINGULAR__` | user category        |
+| `__CRUD_KEBAB_SINGULAR__` | user-category        |
+| `__CRUD_SNAKE_SINGULAR__` | user_category        |
+| `__CRUD_PLAIN_SINGULAR__` | usercategory         |
+| `__CRUD_STUDLY_PLURAL__` | UserCategories       |
+| `__CRUD_CAMEL_PLURAL__` | userCategories       |
+| `__CRUD_TITLE_PLURAL__` | User Categories      |
+| `__CRUD_UCFIRST_PLURAL__` | User categories      |
+| `__CRUD_LOWER_PLURAL__` | user categories      |
+| `__CRUD_KEBAB_PLURAL__` | user-categories      |
+| `__CRUD_SNAKE_PLURAL__` | user_categories      |
+| `__CRUD_PLAIN_PLURAL__` | usercategories       |
+
+##### Files Structure
+```
+stubs/
+├── sidebar.stub
+└── crud/
+    ├── app/
+    │   ├── Http/
+    │   │   ├── Controllers/
+    │   │   │   └── Api/
+    │   │   │       └── __CRUD_STUDLY_SINGULAR__Controller.php     // e.g., UserCategoryController.php
+    │   │   ├── Requests/
+    │   │   │   └── __CRUD_STUDLY_SINGULAR__Request.php            // e.g., UserCategoryRequest.php
+    │   │   └── Resources/
+    │   │       └── __CRUD_STUDLY_SINGULAR__Resource.php           // e.g., UserCategoryResource.php
+    │   └── Providers/
+    │       └── __CRUD_STUDLY_PLURAL__ServiceProvider.php          // e.g., UserCategoriesServiceProvider.php
+    ├── lang/
+    │   └── __CRUD_KEBAB_PLURAL__.php                              // e.g., user-categories.php
+    └── routes/
+        └── api/
+            └── __CRUD_KEBAB_PLURAL__.php                          // e.g., user-categories.php
+```
+##### sidebar.stub
+```html
+        <SidebarLink
+            :label="$t('__CRUD_KEBAB_PLURAL__.plural')"
+            :href="route('dashboard.__CRUD_KEBAB_PLURAL__.index')"
+            :active="['Dashboard/__CRUD_STUDLY_PLURAL__/Index', 'Dashboard/__CRUD_STUDLY_PLURAL__/Create', 'Dashboard/__CRUD_STUDLY_PLURAL__/Edit'].includes(page.component)"
+        >
+            <template #svg>
+                <LocationIcon width="20" height="20" class="me-2"></LocationIcon>
+            </template>
+        </SidebarLink>
+
+```
+##### Command to generate the CRUD files
+```php
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use LaravelModules\ModuleGenerator\Generator;
+use function Laravel\Prompts\text;
+
+class MakeCrudCommand extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'make:crud {name?}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Generate a new CRUD';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        $name = $this->argument('name') ?? text('What is the CRUD name?');
+
+        $generator = new Generator;
+
+        $generator
+            ->crud(name: $name)
+            ->fromPath(base_path('stubs/crud'))
+            ->toPath(base_path())
+            ->appendToFile(
+                file: resource_path('js/components/SidebarItems.vue'),
+                content: file_get_contents(base_path('stubs/sidebar.stub')),
+                before: '    </ul>',
+            )
+            ->publish();
+
+        $this->info('CRUD  has been generated successfully.');
+    }
+}
+```
+> Now you can run the command to generate a new CRUD:
+
+```shell
+php artisan make:crud UserCategory
 ```
