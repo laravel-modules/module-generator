@@ -4,7 +4,7 @@ namespace LaravelModules\ModuleGenerator;
 
 class Environment extends File
 {
-    public function set(string $key, string $value = ''): self
+    public function set(string $key, string|float $value = ''): self
     {
         $value = str_contains($value, ' ') ? sprintf('"%s"', $value) : $value;
 
