@@ -4,17 +4,6 @@ Simple and beautiful tool helps to generate modules to use in your project
 
 ### Installation
 
-First add the repository to your application's composer.json file:
-
-```json
-"repositories": [
-    {
-        "type": "composer",
-        "url": "https://satis.laraeast.com"
-    }
-],
-```
-
 ```shell
 composer require laravel-modules/module-generator
 ```
