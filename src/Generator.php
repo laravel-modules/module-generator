@@ -122,7 +122,7 @@ class Generator
             '__CRUD_LOWER_SINGULAR__'        => str($name)->singular()->snake(' ')->lower()->toString(),   // E.g: user category
             '__CRUD_KEBAB_SINGULAR__'        => str($name)->singular()->kebab()->toString(),        // E.g: user-category
             '__CRUD_SNAKE_SINGULAR__'        => str($name)->singular()->snake()->toString(),        // E.g: user_category
-            '__CRUD_SNAKE_UPPER_SINGULAR__'  => str($name)->singular()->snake()->toString(),        // E.g: USER_CATEGORY
+            '__CRUD_SNAKE_UPPER_SINGULAR__'  => str($name)->singular()->snake()->upper()->toString(),        // E.g: USER_CATEGORY
             '__CRUD_PLAIN_SINGULAR__'        => str($name)->singular()->lower()->toString(),        // E.g: usercategory
 
             // ===== Plural =====
@@ -133,7 +133,7 @@ class Generator
             '__CRUD_LOWER_PLURAL__'          => str($name)->plural()->snake(' ')->lower()->toString(),   // E.g: user categories
             '__CRUD_KEBAB_PLURAL__'          => str($name)->plural()->kebab()->toString(),          // E.g: user-categories
             '__CRUD_SNAKE_PLURAL__'          => str($name)->plural()->snake()->toString(),          // E.g: user_categories
-            '__CRUD_SNAKE_UPPER_PLURAL__'    => str($name)->plural()->snake()->toString(),          // E.g: USER_CATEGORIES
+            '__CRUD_SNAKE_UPPER_PLURAL__'    => str($name)->plural()->snake()->upper()->toString(),          // E.g: USER_CATEGORIES
             '__CRUD_PLAIN_PLURAL__'    => str($name)->plural()->lower()->toString(),          // E.g: usercategories
         ];
     }
