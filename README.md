@@ -237,8 +237,8 @@ $generator->file(base_path('database/seeders/SettingsSeeder.php'))
 > 
 > Here is an example of how to generate a `user_categories` CRUD:
 ##### Replacements of the CRUD words & file names:
-| Key                    | Example              |
-|------------------------|----------------------|
+| Key                  | Example              |
+|----------------------|----------------------|
 | `__CRUD_STUDLY_SINGULAR__` | UserCategory         |
 | `__CRUD_CAMEL_SINGULAR__` | userCategory         |
 | `__CRUD_TITLE_SINGULAR__` | User Category        |
@@ -246,6 +246,7 @@ $generator->file(base_path('database/seeders/SettingsSeeder.php'))
 | `__CRUD_LOWER_SINGULAR__` | user category        |
 | `__CRUD_KEBAB_SINGULAR__` | user-category        |
 | `__CRUD_SNAKE_SINGULAR__` | user_category        |
+| `__CRUD_SNAKE_UPPER_SINGULAR__` | USER_CATEGORY      |
 | `__CRUD_PLAIN_SINGULAR__` | usercategory         |
 | `__CRUD_STUDLY_PLURAL__` | UserCategories       |
 | `__CRUD_CAMEL_PLURAL__` | userCategories       |
@@ -254,6 +255,7 @@ $generator->file(base_path('database/seeders/SettingsSeeder.php'))
 | `__CRUD_LOWER_PLURAL__` | user categories      |
 | `__CRUD_KEBAB_PLURAL__` | user-categories      |
 | `__CRUD_SNAKE_PLURAL__` | user_categories      |
+| `__CRUD_SNAKE_UPPER_PLURAL__` | USER_CATEGORIES      |
 | `__CRUD_PLAIN_PLURAL__` | usercategories       |
 
 ##### Files Structure
