@@ -267,18 +267,18 @@ stubs/
     │   ├── Http/
     │   │   ├── Controllers/
     │   │   │   └── Api/
-    │   │   │       └── __CRUD_STUDLY_SINGULAR__Controller.php     // e.g., UserCategoryController.php
+    │   │   │       └── __CRUD_STUDLY_SINGULAR__Controller.php.stub     // e.g., UserCategoryController.php
     │   │   ├── Requests/
-    │   │   │   └── __CRUD_STUDLY_SINGULAR__Request.php            // e.g., UserCategoryRequest.php
+    │   │   │   └── __CRUD_STUDLY_SINGULAR__Request.php.stub            // e.g., UserCategoryRequest.php
     │   │   └── Resources/
-    │   │       └── __CRUD_STUDLY_SINGULAR__Resource.php           // e.g., UserCategoryResource.php
+    │   │       └── __CRUD_STUDLY_SINGULAR__Resource.php.stub           // e.g., UserCategoryResource.php
     │   └── Providers/
-    │       └── __CRUD_STUDLY_PLURAL__ServiceProvider.php          // e.g., UserCategoriesServiceProvider.php
+    │       └── __CRUD_STUDLY_PLURAL__ServiceProvider.php.stub          // e.g., UserCategoriesServiceProvider.php
     ├── lang/
-    │   └── __CRUD_KEBAB_PLURAL__.php                              // e.g., user-categories.php
+    │   └── __CRUD_KEBAB_PLURAL__.php.stub                              // e.g., user-categories.php
     └── routes/
         └── api/
-            └── __CRUD_KEBAB_PLURAL__.php                          // e.g., user-categories.php
+            └── __CRUD_KEBAB_PLURAL__.php.stub                          // e.g., user-categories.php
 ```
 ##### sidebar.stub
 ```html
