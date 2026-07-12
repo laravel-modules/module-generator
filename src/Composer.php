@@ -14,6 +14,11 @@ class Composer
      */
     protected array $composer = [];
 
+    /**
+     * The original, unmodified composer file content.
+     */
+    protected array $originalComposer = [];
+
     public function setPath(string $path): self
     {
         $this->path = $path;
@@ -59,8 +64,12 @@ class Composer
         $requireDev = $this->composer['require-dev'] ?? [];
 
         foreach ($packages as $package) {
-            if (isset($require[$package])) unset($require[$package]);
-            if (isset($requireDev[$package])) unset($requireDev[$package]);
+            if (isset($require[$package])) {
+                unset($require[$package]);
+            }
+            if (isset($requireDev[$package])) {
+                unset($requireDev[$package]);
+            }
         }
 
         $this->composer['require'] = $require;
@@ -115,7 +124,9 @@ class Composer
         $scripts = $this->composer['scripts'] ?? [];
 
         foreach ($keys as $key) {
-            if (isset($scripts[$key])) unset($scripts[$key]);
+            if (isset($scripts[$key])) {
+                unset($scripts[$key]);
+            }
         }
 
         $this->composer['scripts'] = $scripts;
@@ -158,10 +169,11 @@ class Composer
      */
     public function publish(): void
     {
-        // Convert the composer array to pretty json.
-        $json = json_encode($this->composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+        // Convert the composer array to pretty json (4-space indent, matching
+        // composer's own output) and end the file with a trailing newline.
+        $json = json_encode($this->composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
         // Override the composer file.
-        file_put_contents($this->path, $json);
+        file_put_contents($this->path, $json.PHP_EOL);
     }
 }

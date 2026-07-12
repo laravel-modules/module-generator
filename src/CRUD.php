@@ -5,16 +5,16 @@ namespace LaravelModules\ModuleGenerator;
 class CRUD
 {
     protected string $fromPath = '';
+
     protected string $toPath = '';
 
     protected array $replacements = [];
 
     protected Generator $generator;
+
     public function __construct(
         protected string $name,
-    ) {
-
-    }
+    ) {}
 
     public function setGenerator(Generator $generator): self
     {
@@ -29,12 +29,14 @@ class CRUD
 
         return $this;
     }
-    public function toPath(string $fromPath): self
+
+    public function toPath(string $toPath): self
     {
-        $this->toPath = $fromPath;
+        $this->toPath = $toPath;
 
         return $this;
     }
+
     public function setReplacement(array $replacements): self
     {
         $this->replacements = $replacements;
@@ -64,7 +66,7 @@ class CRUD
     {
         $replacements = [
             '.stub' => '',
-            'create___CRUD_SNAKE_PLURAL___table' => date('Y_m_d_His') . '_create___CRUD_SNAKE_PLURAL___table',
+            'create___CRUD_SNAKE_PLURAL___table' => date('Y_m_d_His').'_create___CRUD_SNAKE_PLURAL___table',
             ...$this->replacements,
         ];
 
