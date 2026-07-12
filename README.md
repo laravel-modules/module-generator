@@ -1,6 +1,15 @@
 ## Module Generator
 
-Simple and beautiful tool helps to generate modules to use in your project
+A simple and elegant tool that helps you scaffold application modules from stubs, and customize
+project files (`composer.json`, `.env`, routes, views, …) while doing so.
+
+### Requirements
+
+- PHP 8.0+
+- `illuminate/support` 10, 11 or 12
+
+The `composer()`, `environment()`, `file()` and `crud()` helpers work in any project.
+`registerServiceProvider()` additionally requires a full Laravel application at runtime.
 
 ### Installation
 
@@ -111,11 +120,12 @@ stubs/
 ```
 
 #### Register Service Provider
-You can register the service provider in `config/app.php` file automatically by calling the `registerServiceProvider()` method:
+You can register the service provider automatically by calling the `registerServiceProvider()`
+method. On Laravel 10 and below it is added to `config/app.php`; on Laravel 11+ it is added to
+`bootstrap/providers.php`. The call is idempotent — registering the same provider twice is a no-op.
 
 ```php
-$generator->registerServiceProvider('App\Providers\UsersServiceProvider')
-
+$generator->registerServiceProvider('App\Providers\UsersServiceProvider');
 ```
 
 #### Working with composer file
@@ -348,3 +358,18 @@ class MakeCrudCommand extends Command
 ```shell
 php artisan make:crud UserCategory
 ```
+
+> **Note:** The `file()` and `environment()` helpers buffer all changes in memory and only touch
+> the disk when you call `publish()`. Missing files (and their parent directories) are created at
+> that point. This makes the API safe to chain and easy to reason about.
+
+### Testing
+
+```shell
+composer install
+composer test
+```
+
+### License
+
+The MIT License (MIT). Please see the [LICENSE](LICENSE) file for more information.
