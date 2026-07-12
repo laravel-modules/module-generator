@@ -12,7 +12,7 @@ class File
     /**
      * The file content.
      */
-    protected string $content;
+    protected string $content = '';
 
     /**
      * Set the path of the file.
@@ -33,7 +33,7 @@ class File
             return $this;
         }
 
-        $this->content = empty($this->content) ? $content : $this->content . "\n" . $content;
+        $this->content = empty($this->content) ? $content : $this->content."\n".$content;
 
         return $this;
     }
@@ -45,7 +45,7 @@ class File
             return $this;
         }
 
-        $this->content = empty($this->content) ? $content : $content . "\n" . $this->content;
+        $this->content = empty($this->content) ? $content : $content."\n".$this->content;
 
         return $this;
     }
@@ -58,17 +58,17 @@ class File
         }
 
         $escapedSearch = preg_quote($search, '/');
-        preg_match_all("/^{$escapedSearch}(.*)/m", $this->content, $matches);
 
-        if (! empty($matches[0][0]) && $after = $matches[0][0]) {
-            $replacement = empty($after) ? $content : $after . "\n" . $content;
-            $this->content = str_replace($after, $replacement, $this->content);
+        if (preg_match("/^{$escapedSearch}.*/m", $this->content, $matches)) {
+            $line = $matches[0];
+            $this->content = $this->replaceFirst($line, $line."\n".$content, $this->content);
         } else {
             $this->append($content);
         }
 
         return $this;
     }
+
     public function prependBefore(string $search, string $content): self
     {
         // Ensure that the content is defined in the file.
@@ -77,11 +77,10 @@ class File
         }
 
         $escapedSearch = preg_quote($search, '/');
-        preg_match_all("/^{$escapedSearch}(.*)/m", $this->content, $matches);
 
-        if (! empty($matches[0][0]) && $before = $matches[0][0]) {
-            $replacement = empty($before) ? $content : $content . "\n" . $before;
-            $this->content = str_replace($before, $replacement, $this->content);
+        if (preg_match("/^{$escapedSearch}.*/m", $this->content, $matches)) {
+            $line = $matches[0];
+            $this->content = $this->replaceFirst($line, $content."\n".$line, $this->content);
         } else {
             $this->prepend($content);
         }
@@ -98,21 +97,9 @@ class File
 
     protected function setContent(): void
     {
-        // Create parent directories if they don't exist
-        $directory = dirname($this->path);
-
-        if (!is_dir($directory)) {
-            mkdir($directory, 0755, true);
-        }
-
-        // If file doesn't exist, create it with empty content
-        if (!is_file($this->path)) {
-            file_put_contents($this->path, '');
-        }
-
-        $content = file_get_contents($this->path);
-
-        $this->content = $content;
+        // Read the current content when the file exists. Missing files are
+        // treated as empty and only written to disk on publish().
+        $this->content = is_file($this->path) ? file_get_contents($this->path) : '';
     }
 
     public function getContent(): string
@@ -121,10 +108,16 @@ class File
     }
 
     /**
-     * Override the env file of the application.
+     * Write the accumulated content to the file, creating it if needed.
      */
     public function publish(): void
     {
+        $directory = dirname($this->path);
+
+        if (! is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+
         file_put_contents($this->path, $this->content);
     }
 
@@ -134,5 +127,19 @@ class File
     protected function exists(string $content): bool
     {
         return str_contains($this->content, $content);
+    }
+
+    /**
+     * Replace the first occurrence of the given value within the subject.
+     */
+    protected function replaceFirst(string $search, string $replace, string $subject): string
+    {
+        $position = strpos($subject, $search);
+
+        if ($position === false) {
+            return $subject;
+        }
+
+        return substr_replace($subject, $replace, $position, strlen($search));
     }
 }
