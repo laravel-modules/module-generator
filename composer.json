@@ -1,6 +1,14 @@
 {
     "name": "laravel-modules/module-generator",
     "description": "Simple and beautiful tool helps to generate modules to use in your project",
+    "keywords": [
+        "laravel",
+        "module",
+        "generator",
+        "stubs",
+        "scaffold",
+        "crud"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -13,10 +21,26 @@
         "php": "^8.0",
         "illuminate/support": "^10.0|^11.0|^12.0"
     },
+    "require-dev": {
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^10.5|^11.0"
+    },
     "autoload": {
         "psr-4": {
             "LaravelModules\\ModuleGenerator\\": "src/"
         }
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaravelModules\\ModuleGenerator\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
-
